@@ -149,7 +149,7 @@
                     <h4>PostedBy : <?php echo $prd->postedBy ?> </h4>
                     <h4>Time : <?php echo $prd->postedDate ?> </h4>
                 </div>
-                    <p><a href="#" class="btn btn-success">Add To Cart.</a></p>
+                    <p><a href="#" class="btn btn-success">ADD</a></p>
             </div>
         </div>
                 <?php
