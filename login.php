@@ -32,30 +32,62 @@
         <![endif]-->
     </head>
     <body>
+        <!-- ************************************************************************* -->
+    <?php
+        include_once("connext.php");
+        if(isset($_POST['submit'])){
+            //mysqli_escape_string => ป้องกันการถูก sql injection  แฮก
+
+            $username = $conn->real_escape_string($_POST['username']);
+            $password = md5($conn->real_escape_string($_POST['password']));
+
+            $sql = "SELECT * FROM customers WHERE usename = '$username' AND password = '$password'";
+
+            //mysqli_query
+            $result =$conn->query($sql);
+            print_r($result);
+            //
+            //  
+            if($result->num_rows>0){
+                $row=$resultresult->fetch_array(); //
+                $_SESSION['id']=$row['id'];            //
+                $_SESSION["username"]=$row['frisname']. " " . $row['lasname'];
+                $_SESSION['username']=$row['usename'];
+            
+                //วาปหน้าแรก redirct
+                header("location: index.php");
+            }else{
+                echo "Erorr";
+            }
+        }
+    ?>
+    <!-- ************************************************************************* -->
 
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="login-panel panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center">Please Sign In</h3>
-                        </div>
-                        <div class="panel-body">
-                            <form role="form">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
-                                    </div>
-                                    <!-- Change this to a button or input when using this as a form -->
-                                    <button class="btn btn-lg btn-success btn-block">Login</button>
-                                </fieldset>
-                            </form>
+                <form action="" method="post">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="login-panel panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-center">Please Sign In</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="username" name="username" type="text" autofocus>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                        </div>
+                                        <!-- Change this to a button or input when using this as a form -->
+                                        <button type="submit" class="btn btn-lg btn-success btn-block" name="submit">Login</button>
+                                    </fieldset>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
 

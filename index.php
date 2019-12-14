@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include("connext.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Soi5 Used Cars</title>
+    <title>Soi5 Used Cars 012</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +58,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Soi 5 Used Cars</a>
+            <a class="navbar-brand" href="#">Soi 5 Used Cars 012</a>
         </div>
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -69,20 +70,25 @@
 
         <!-- Top Navigation: Left Menu -->
         <ul class="nav navbar-nav navbar-left navbar-top-links">
-            <li><a href="login.php"><i class="fa fa-home fa-fw"></i> หน้าหลัก</a></li>
+            <li><a href="index.php"><i class="fa fa-home fa-fw"></i> หน้าหลัก</a></li>
         </ul>
 
         <!-- Top Navigation: Right Menu -->
         <ul class="nav navbar-right navbar-top-links">
             <li>
-                <a href="">
+                <a href="login.php">
                     <i class="fa fa-lock fa-fw"></i> เข้าสู่ระบบ
                 </a>
             </li>
             
+            <?php
+                        if(isset($_SESSION['id'])){
+                    ?>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> Phakpoom Ittirattanakomon <b class="caret"></b>
+                    <i class="fa fa-user fa-fw"></i> 
+                        <<?php //echo $_SESSION['username'] ?> 
+                    <span class="caret"><b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -90,8 +96,9 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="Logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
+
                 </ul>
             </li>
             <li>
@@ -99,6 +106,16 @@
                     <i class="fa fa-shopping-cart fa-fa"></i> (0)
                 </a>
             </li>
+<!-- *************************************** -->
+            <?php
+                        }
+                        else{
+                    ?>
+                    
+                    <?php
+                        }
+                    ?>
+<!-- *************************************** -->
         </ul>
 
         <!-- Sidebar -->
@@ -112,13 +129,13 @@
                         <a href="#" class="active"><i class="fa fa-car fa-fw"></i> รถทุกประเภท</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-car fa-fw"></i> รถเก๋ง</a>
+                        <a href="showproduct.php?carType=1" class="active"><i class="fa fa-car fa-fw"></i> รถเก๋ง</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-truck fa-fw"></i> รถกระบะ</a>
+                        <a href="showproduct.php?carType=2" class="active"><i class="fa fa-truck fa-fw"></i> รถกระบะ</a>
                     </li>
                     <li>
-                        <a href="#" class="active"><i class="fa fa-truck fa-fw"></i> รถตู้</a>
+                        <a href="showproduct.php?carType=3" class="active"><i class="fa fa-truck fa-fw"></i> รถตู้</a>
                     </li>
                 </ul>
             </div>
